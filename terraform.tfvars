@@ -1,0 +1,5 @@
+region              = "us-east-1"
+bucket_name         = "s3-backend-bucket-terraform-eks"
+dynamodb_table_name = "terraform-lock-table"
+billing_mode        = "PAY_PER_REQUEST"
+hash_key            = "LockID"
