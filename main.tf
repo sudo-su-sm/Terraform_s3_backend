@@ -23,7 +23,7 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
   hash_key     = var.hash_key
 
   attribute {
-    name = "LockID"
+    name = var.hash_key  # it must be the same as the hash_key defined above
     type = "S"
   }
 
