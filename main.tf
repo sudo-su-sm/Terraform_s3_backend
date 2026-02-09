@@ -3,11 +3,12 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = var.bucket_name
+  bucket         = var.bucket_name
+  force_destroy  = true  # Allows bucket deletion even if it contains objects (for demo cleanup)
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true  # we need to prevent accidental deletion of the bucket in production, but for demo purposes we can allow it to be destroyed
+  # }
 }
 
 resource "aws_s3_bucket_versioning" "terraform_state" {
@@ -27,9 +28,9 @@ resource "aws_dynamodb_table" "terraform_state_lock" {
     type = "S"
   }
 
-  lifecycle {
-    prevent_destroy = true
-  }
+  # lifecycle {
+  #   prevent_destroy = true  # we need to prevent accidental deletion of the DynamoDB table in production, but for demo purposes we can allow it to be destroyed
+  # }
   
 }
 
